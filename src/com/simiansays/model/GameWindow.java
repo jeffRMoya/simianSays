@@ -10,17 +10,18 @@ public class GameWindow implements ActionListener, MouseListener {
     // INSTANCE VARIABLE OF JFRAME
     private JFrame window;
 
-    // JFRAME WINDOW INSTANCE FIELDS
+    // JFRAME WINDOW CONSTRUCTOR
     public GameWindow() {
         window = new JFrame();
         window.setTitle("Simian Says");
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.setSize(1000,1000);
+        window.setResizable(false);
         window.setLocationRelativeTo(null);
 
     }
 
-    // show() METHOD CALLS FOR WINDOW.
+    // show() METHOD CALLS FOR WINDOW IN main().
     public void show(){
         window.setVisible(true);
     }
