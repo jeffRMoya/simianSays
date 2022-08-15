@@ -18,10 +18,6 @@ Model                    (THE SYSTEM) calls methods that live in controller
 
 Controller
 	+simianSays()  (GAME)
-	    -welcome()
-	    -showScoreBoard()
-	    -promptForName()
-	    -runGame()
 	+enterName()
 
 Prompter
