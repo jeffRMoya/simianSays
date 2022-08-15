@@ -1,0 +1,25 @@
+(com.simiansays.client)
+
+PlayerClient          (VIEW)
+	main()
+
+(com.simiansays)
+
+Model                    (THE SYSTEM) calls methods that live in controller
+	player
+	- scoreBoard[]
+	+graphics()
+	+homePage()
+		^instructions live here
+	+winPage()
+	+losePage()
+	+playButton()
+	+playAgain()
+
+Controller
+	+simianSays()  (GAME)
+	+enterName()
+
+Prompter
+
+Test (TEST DIRECTORY)
