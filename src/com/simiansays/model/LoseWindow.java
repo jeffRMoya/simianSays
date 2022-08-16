@@ -58,10 +58,8 @@ public class LoseWindow implements ActionListener {
                         gameWindow.show();
                     }
                 });
-
             }
         });
-
     }
 
     // show() METHOD CALLS FOR WINDOW IN main().
