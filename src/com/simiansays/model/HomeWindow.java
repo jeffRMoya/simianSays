@@ -43,7 +43,7 @@ public class HomeWindow{
 
 
         // BUTTONS
-        //play
+        // play
         playButton = new JButton("PLAY");
         panel.add(playButton);
         playButton.addActionListener(new ActionListener() {
