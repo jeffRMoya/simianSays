@@ -1,7 +1,5 @@
 package com.simiansays.model;
 
-import com.simiansays.model.app.SimianSaysApp;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class HomeWindow{
+public class HomeWindow implements ActionListener, MouseListener {
     // INSTANCE VARIABLE OF JFRAME
     private JFrame window;
     private JPanel panel;
@@ -43,15 +41,26 @@ public class HomeWindow{
 
 
         // BUTTONS
-        // play
+        //play
         playButton = new JButton("PLAY");
         panel.add(playButton);
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("PLAY BUTTON HAS BEEN CLICKED");
-                SimianSaysApp play = new SimianSaysApp();
-                play.executeGameWindow();
+
+                    /*
+                     * Swing method 'invokeLater' requires as a parameter an instance of runnable. InvokeLater will ensure all swing related
+                     * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
+                     * swing code should run through this thread.
+                     */
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            GameWindow gameWindow = new GameWindow();
+                            gameWindow.show();
+                        }
+                    });
             }
         });
 
@@ -60,5 +69,38 @@ public class HomeWindow{
     // show() METHOD CALLS FOR WINDOW IN main().
     public void show(){
         window.setVisible(true);
+    }
+
+
+    // ACTION LISTENER CONTRACT METHODS
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    // MOUSE LISTENER CONTRACT METHODS
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
