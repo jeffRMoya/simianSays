@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class WinWindow implements ActionListener, MouseListener {
+public class WinWindow {
     //INSTANCE VARIABLE of JFRAME- FIELDS
     private JFrame window;
     private JPanel panel;
@@ -61,46 +61,24 @@ public class WinWindow implements ActionListener, MouseListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("PLAY AGAIN BUTTON HAS BEEN CLICKED");
-
-                SimianSaysApp play = new SimianSaysApp();
-                play.executeGameWindow();
+                /*
+                 * Swing method 'invokeLater' requires as a parameter an instance of runnable. InvokeLater will ensure all swing related
+                 * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
+                 * swing code should run through this thread.
+                 */
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        GameWindow gameWindow = new GameWindow();
+                        gameWindow.show();
+                    }
+                });
             }
         });
     }
 
-    // show() METHOD CALLS FOR WINDOW IN main().
-    public void show() {
-        window.setVisible(true);
-    }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+        // show() METHOD CALLS FOR WINDOW IN main().
+        public void show() {
+            window.setVisible(true);
+        }
 }
