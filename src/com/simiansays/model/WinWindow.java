@@ -9,16 +9,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class HomeWindow implements ActionListener, MouseListener {
-    // INSTANCE VARIABLE OF JFRAME
+public class WinWindow implements ActionListener, MouseListener {
+    //INSTANCE VARIABLE of JFRAME- FIELDS
     private JFrame window;
     private JPanel panel;
-    private JButton playButton;
+    private JButton playAgainButton;
     private JLabel label;
+    private JPanel mainPanel;
 
     // JFRAME WINDOW CONSTRUCTOR
-    public HomeWindow() {
-        // window specs
+    public WinWindow() {
         window = new JFrame();
         window.setTitle("Simian Says");
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -29,7 +29,7 @@ public class HomeWindow implements ActionListener, MouseListener {
         // within window PANEL SPECS
         panel = new JPanel();
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
-        panel.setBackground(Color.BLUE);
+        panel.setBackground(Color.BLACK);
         // within window PANEL LOCATION
         window.add(panel, BorderLayout.CENTER);
 
@@ -41,15 +41,26 @@ public class HomeWindow implements ActionListener, MouseListener {
         ImageIcon printIcon = new ImageIcon("BF.png");
         label.setIcon(printIcon);
 
+        //You Won message
+        label = new JLabel("Congratulations");
+        panel.add(label);
+        label.setForeground(Color.PINK);
+        label.setFont(new Font("Arial", Font.BOLD, 80));
+        label = new JLabel("       You Won !!     ");
+        panel.add(label);
+        label.setForeground(Color.PINK);
+        label.setFont(new Font("Arial", Font.BOLD, 80));
 
-        // BUTTONS
-        //play
-        playButton = new JButton("PLAY");
-        panel.add(playButton);
-        playButton.addActionListener(new ActionListener() {
+        // PlayAgain BUTTON
+        playAgainButton = new JButton("PLAY AGAIN");
+        playAgainButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        playAgainButton.setPreferredSize(new Dimension(300, 100));
+        panel.add(playAgainButton);
+
+        playAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("PLAY BUTTON HAS BEEN CLICKED");
+                System.out.println("PLAY AGAIN BUTTON HAS BEEN CLICKED");
 
                 SimianSaysApp play = new SimianSaysApp();
                 play.executeGameWindow();
@@ -63,13 +74,11 @@ public class HomeWindow implements ActionListener, MouseListener {
     }
 
 
-    // ACTION LISTENER CONTRACT METHODS
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
-    // MOUSE LISTENER CONTRACT METHODS
     @Override
     public void mouseClicked(MouseEvent e) {
 

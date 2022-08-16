@@ -18,7 +18,7 @@ public class GameWindow {
     }
 
     // show() METHOD CALLS FOR WINDOW IN main().
-    public void show(){
+    public void show() {
         window.setVisible(true);
     }
 
