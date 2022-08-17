@@ -8,22 +8,19 @@ import java.awt.event.ActionListener;
 
 public class GameWindow {
 
-
     // GAME WINDOW CONSTRUCTOR
     public JFrame window;
     public JPanel redPanel, bluePanel, orangePanel, greenPanel,
-             blackLineBetweenButtons, board;
+            blackLineBetweenButtons, board;
     public JButton startButton;
     public JTextField timeCount, levelCount;
-
-
 
     public GameWindow() {
         // BOARD
         board = new JPanel();
         board.setBackground(Color.BLACK);
-        board.setBounds(350,350,300,300);
-        board.setLayout(new FlowLayout(FlowLayout.CENTER,150,100));
+        board.setBounds(350, 350, 300, 300);
+        board.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 100));
 
         // BOARD START BUTTON
         startButton = new JButton("START");
@@ -40,43 +37,43 @@ public class GameWindow {
         timeCount.setFont(new Font("Arial", Font.BOLD, 24));
         timeCount.setBackground(Color.WHITE);
         timeCount.setForeground(Color.BLACK);
-        timeCount.setMargin(new Insets(100,100,100,100));
+        timeCount.setMargin(new Insets(100, 100, 100, 100));
         board.add(timeCount);
-
 
         // ORANGE PANEL
         orangePanel = new JPanel();
         orangePanel.setBackground(Color.ORANGE.darker());
-        orangePanel.setBounds(0,500,495,495);
+        orangePanel.setBounds(0, 500, 495, 495);
 
         // GREEN PANEL
         greenPanel = new JPanel();
         greenPanel.setBackground(Color.GREEN.darker());
-        greenPanel.setBounds(0,0,495,495);
+        greenPanel.setBounds(0, 0, 495, 495);
 
         // RED PANEL
         redPanel = new JPanel();
         redPanel.setBackground(Color.RED.darker());
-        redPanel.setBounds(500,0,500,495);
+        redPanel.setBounds(500, 0, 500, 495);
 
         // BLUE PANEL
         bluePanel = new JPanel();
         bluePanel.setBackground(Color.BLUE.darker());
-        bluePanel.setBounds(500,500,500,495);
+        bluePanel.setBounds(500, 500, 500, 495);
 
         // BLACK LINES (BLACK BACKGROUND TO BE SUPERIMPOSED ON)
         blackLineBetweenButtons = new JPanel();
         blackLineBetweenButtons.setBackground(Color.BLACK);
-        blackLineBetweenButtons.setBounds(0,0,1000,1000);
+        blackLineBetweenButtons.setBounds(0, 0, 1000, 1000);
 
 
         window = new JFrame("Simian Says");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(null);
         window.setResizable(false);
+        window.setSize(1000, 1000);
         window.setLocationRelativeTo(null);
-        window.setSize(1000,1000);
-       // window.setVisible(true);
+
+        // window.setVisible(true);
 
         window.add(board);
         window.add(timeCount);
@@ -87,12 +84,10 @@ public class GameWindow {
         window.add(orangePanel);
 
         window.add(blackLineBetweenButtons);
-        }
-
-
+    }
 
     // show() METHOD CALLS FOR WINDOW IN main().
-    public void show(){
+    public void show() {
         window.setVisible(true);
     }
 }

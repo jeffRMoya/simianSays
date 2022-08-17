@@ -1,6 +1,9 @@
 package com.simiansays.model.app;
 
+import com.simiansays.model.GameWindow;
 import com.simiansays.model.HomeWindow;
+import com.simiansays.model.LoseWindow;
+import com.simiansays.model.WinWindow;
 import javax.swing.*;
 
 public class SimianSaysApp {
