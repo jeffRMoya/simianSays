@@ -21,6 +21,7 @@ public class HomeWindow {
         window.setResizable(false);
         window.setSize(1000, 1000);
         window.setLocationRelativeTo(null);
+        // window.pack();
 
         // within window TITLE PANEL Specs
         titlePanel = new JPanel();
@@ -32,8 +33,10 @@ public class HomeWindow {
         label = new JLabel("BLUE FALCON 5: SIMIAN SAYS");
         titlePanel.add(label);
         label.setForeground(Color.WHITE);
-        label.setFont(new Font("Arial", Font.BOLD, 45));
-        ImageIcon printIcon = new ImageIcon("BF.png");
+
+        label.setFont(new Font("Arial", Font.BOLD, 40));
+        ImageIcon printIcon = new ImageIcon("data/BF.png");
+        
         label.setIcon(printIcon);
 
         // INSTRUCTIONS Panel

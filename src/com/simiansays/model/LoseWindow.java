@@ -33,7 +33,7 @@ public class LoseWindow {
         titlePanel.add(label);
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 40));
-        ImageIcon printIcon = new ImageIcon("BF.png");
+        ImageIcon printIcon = new ImageIcon("data/BF.png");
         label.setIcon(printIcon);
 
         //GameOver Message Panel
