@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class WinWindow {
+public class WinWindow implements ActionListener, MouseListener {
     //INSTANCE VARIABLE of JFRAME- FIELDS
     private JFrame window;
     private JPanel panel;
@@ -60,7 +60,6 @@ public class WinWindow {
         playAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("PLAY AGAIN BUTTON HAS BEEN CLICKED");
                 /*
                  * Swing method 'invokeLater' requires as a parameter an instance of runnable. InvokeLater will ensure all swing related
                  * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
@@ -77,8 +76,39 @@ public class WinWindow {
         });
     }
 
-        // show() METHOD CALLS FOR WINDOW IN main().
-        public void show() {
-            window.setVisible(true);
-        }
+    // show() METHOD CALLS FOR WINDOW IN main().
+    public void show() {
+        window.setVisible(true);
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
