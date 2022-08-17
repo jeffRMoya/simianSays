@@ -14,12 +14,9 @@ public class SimianSaysApp {
          * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
          * swing code should run through this thread.
          */
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.show();
-            }
+        SwingUtilities.invokeLater(() -> {
+            HomeWindow homeWindow = new HomeWindow();
+            homeWindow.show();
         });
     }
 }
