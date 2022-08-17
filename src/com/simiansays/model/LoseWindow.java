@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoseWindow implements ActionListener {
+public class LoseWindow {
     // INSTANCE VARIABLE OF JFRAME
     private JFrame window;
     private JPanel panel;
@@ -34,7 +34,7 @@ public class LoseWindow implements ActionListener {
         panel.add(label);
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 40));
-        ImageIcon printIcon = new ImageIcon("BF.png");
+        ImageIcon printIcon = new ImageIcon("data/BF.png");
         label.setIcon(printIcon);
 
 
@@ -65,10 +65,5 @@ public class LoseWindow implements ActionListener {
     // show() METHOD CALLS FOR WINDOW IN main().
     public void show() {
         window.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }

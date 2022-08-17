@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class HomeWindow {
     // INSTANCE VARIABLE OF JFRAME
@@ -23,6 +22,7 @@ public class HomeWindow {
         window.setSize(1000, 1000);
         window.setResizable(false);
         window.setLocationRelativeTo(null);
+        // window.pack();
 
         // within window PANEL SPECS
         panel = new JPanel();
@@ -36,7 +36,7 @@ public class HomeWindow {
         panel.add(label);
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 40));
-        ImageIcon printIcon = new ImageIcon("BF.png");
+        ImageIcon printIcon = new ImageIcon("data/BF.png");
         label.setIcon(printIcon);
 
 
