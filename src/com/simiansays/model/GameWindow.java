@@ -1,34 +1,34 @@
 package com.simiansays.model;
 
+import com.apps.util.Console;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Random;
 
-
-public class GameWindow implements MouseListener {
-
-
-    // GAME WINDOW CONSTRUCTOR
-    public JFrame window;
-    public JPanel redPanel, bluePanel, orangePanel, greenPanel,
+class GameWindow implements MouseListener {
+    // Fields
+    private JFrame window;
+    private JPanel redPanel, bluePanel, orangePanel, greenPanel,
             blackLineBetweenButtons, board;
-    public JButton startButton;
-    public JLabel timeLabel, roundLabel, dealerLabel;
-    public Timer timer;
-    boolean timerOn;
-    public int second = 0;
-    Collection<Integer> machineChoice = new ArrayList<>();
-    Collection<Integer> playerChoice = new ArrayList<>();
+    private JButton startButton;
+    private JLabel timeLabel, roundLabel, dealerLabel;
+    private Timer timer;
+    private boolean timerOn;
+    private int second = 0;
+    private Collection<Integer> machineChoice = new ArrayList<>();
+    private Collection<Integer> playerChoice = new ArrayList<>();
 
+    // CTOR
     public GameWindow() {
         // BOARD
         board = new JPanel();
         board.setBackground(Color.BLACK);
         board.setBounds(0, 0, 1000, 40);
+
 
         // BOARD START BUTTON
         startButton = new JButton("START");
@@ -36,9 +36,8 @@ public class GameWindow implements MouseListener {
         startButton.addActionListener(e -> {
             System.out.println("START BUTTON HAS BEEN CLICKED");
             timer.start();
-            machineNextTurn();
+            firstMove();
             startButton.setEnabled(false);
-            turn();
         });
 
         // BOARD TIMER DISPLAY
@@ -49,7 +48,7 @@ public class GameWindow implements MouseListener {
         board.add(timeLabel);
         simpleTimer();
         // round label
-        roundLabel = new JLabel("ROUND: "+ playerChoice.size()+1 +", ");
+        roundLabel = new JLabel("ROUND: " + playerChoice.size() + 1 + ", ");
         roundLabel.setForeground(Color.WHITE);
         roundLabel.setFont(new Font("Arial", Font.BOLD, 24));
         board.add(roundLabel);
@@ -88,8 +87,8 @@ public class GameWindow implements MouseListener {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(null);
         window.setResizable(false);
-        window.setLocationRelativeTo(null);
         window.setSize(1000, 1000);
+        window.setLocationRelativeTo(null);
         window.addMouseListener(this);
         window.add(board);
         window.add(redPanel);
@@ -114,42 +113,78 @@ public class GameWindow implements MouseListener {
     }
 
     // TURN METHOD
-    public void turn() {
-        int i = machineChoice.size(), j = playerChoice.size();
-        if (machineChoice.isEmpty() && playerChoice.isEmpty()) {
-            machineNextTurn();
-            dealerLabel.setText(", TURN: Simians Turn!");
-        } else if (i>j) {
-            resetBoard();
-            dealerLabel.setText(", TURN: Your turn!");
-        } else if (i==j) {
-            machineNextTurn();
+//    public void turn() {
+//        int i = machineChoice.size(), j = playerChoice.size();
+//        if (machineChoice.isEmpty() && playerChoice.isEmpty()) {
+//            machineNextTurn();
+//            dealerLabel.setText(", TURN: Simians Turn!");
+//        } else if (i>j) {
+//            resetBoard();
+//            dealerLabel.setText(", TURN: Your turn!");
+//        } else if (i==j) {
+//            machineNextTurn();
+//        }
+//    }
+
+    public void firstMove() {
+        board.setOpaque(false);
+        greenPanelBright();
+        machineChoice.add(0);
+        bluePanelBright();
+        machineChoice.add(3);
+        orangePanelBright();
+        machineChoice.add(2);
+        redPanelBright();
+        machineChoice.add(1);
+        resetBoard();
+        System.out.println(machineChoice);
+    }
+
+    public void cheapWin() {
+        if (playerChoice.size() >= 4) {
+            if (playerChoice.equals(machineChoice)) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        WinWindow winWindow = new WinWindow();
+                        winWindow.show();
+                    }
+                });
+            } else {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        LoseWindow loseWindow = new LoseWindow();
+                        loseWindow.show();
+                    }
+                });
+            }
         }
     }
 
     // MACHINE CHOICES
-    public void machineNextTurn() {
-        Random ran = new Random();
-        int randomValue = ran.nextInt(5);
-        System.out.println("RANDOM VALUE=" +randomValue);
-        if (randomValue == 1) {
-            greenPanelBright();
-            machineChoice.add(1);
-            System.out.println("MACHINE CLICKED GREEN SQUARE. \n 1 added to machineChoice. \n" + machineChoice);
-        } else if (randomValue == 2) {
-            redPanelBright();
-            machineChoice.add(2);
-            System.out.println("MACHINE CLICKED RED SQUARE. \n 2 added to machineChoice. \n" + machineChoice);
-        } else if (randomValue == 3) {
-            orangePanelBright();
-            machineChoice.add(3);
-            System.out.println("MACHINE CLICKED ORANGE SQUARE. \n 3 added to machineChoice. \n" + machineChoice);
-        } else if (randomValue >= 4) {
-            bluePanelBright();
-            machineChoice.add(4);
-            System.out.println("MACHINE CLICKED BLUE SQUARE. \n 4 added to machineChoice. \n" + machineChoice);
-        }
-    }
+//    public void machineNextTurn() {
+//        Random ran = new Random();
+//        int randomValue = ran.nextInt(5);
+//        System.out.println("RANDOM VALUE=" +randomValue);
+//        if (randomValue == 1) {
+//            greenPanelBright();
+//            machineChoice.add(1);
+//            System.out.println("MACHINE CLICKED GREEN SQUARE. \n 1 added to machineChoice. \n" + machineChoice);
+//        } else if (randomValue == 2) {
+//            redPanelBright();
+//            machineChoice.add(2);
+//            System.out.println("MACHINE CLICKED RED SQUARE. \n 2 added to machineChoice. \n" + machineChoice);
+//        } else if (randomValue == 3) {
+//            orangePanelBright();
+//            machineChoice.add(3);
+//            System.out.println("MACHINE CLICKED ORANGE SQUARE. \n 3 added to machineChoice. \n" + machineChoice);
+//        } else if (randomValue >= 4) {
+//            bluePanelBright();
+//            machineChoice.add(4);
+//            System.out.println("MACHINE CLICKED BLUE SQUARE. \n 4 added to machineChoice. \n" + machineChoice);
+//        }
+//    }
 
     // PANELS SELECTED
     public void greenPanelBright() {
@@ -157,6 +192,7 @@ public class GameWindow implements MouseListener {
         redPanel.setBackground(Color.RED.darker());
         orangePanel.setBackground(Color.ORANGE.darker());
         greenPanel.setBackground(Color.GREEN.brighter());
+
     }
 
     public void redPanelBright() {
@@ -164,6 +200,7 @@ public class GameWindow implements MouseListener {
         bluePanel.setBackground(Color.BLUE.darker());
         orangePanel.setBackground(Color.ORANGE.darker());
         redPanel.setBackground(Color.RED.brighter());
+
     }
 
     public void orangePanelBright() {
@@ -171,6 +208,7 @@ public class GameWindow implements MouseListener {
         bluePanel.setBackground(Color.BLUE.darker());
         redPanel.setBackground(Color.RED.darker());
         orangePanel.setBackground(Color.ORANGE.brighter());
+
     }
 
     public void bluePanelBright() {
@@ -178,6 +216,7 @@ public class GameWindow implements MouseListener {
         bluePanel.setBackground(Color.BLUE.brighter());
         redPanel.setBackground(Color.RED.darker());
         orangePanel.setBackground(Color.ORANGE.darker());
+
     }
 
     public void resetBoard() {
@@ -194,22 +233,23 @@ public class GameWindow implements MouseListener {
 
         if (x > 0 && x < 500 && y > 0 && y < 500) {
             greenPanelBright();
-            playerChoice.add(1);
+            playerChoice.add(0);
             System.out.println("GREEN SQUARE CLICKED. playerChoice=" + playerChoice);
 
         } else if (x > 500 && x < 1000 && y > 0 && y < 500) {
             redPanelBright();
-            playerChoice.add(2);
+            playerChoice.add(1);
             System.out.println("RED SQUARE CLICKED. playerChoice=" + playerChoice);
         } else if (x > 0 && x < 500 && y > 500 && y < 1000) {
             orangePanelBright();
-            playerChoice.add(3);
+            playerChoice.add(2);
             System.out.println("YELLOW SQUARE CLICKED. playerChoice=" + playerChoice);
         } else if (x > 500 && x < 1000 && y > 500 && y < 1000) {
             bluePanelBright();
-            playerChoice.add(4);
+            playerChoice.add(3);
             System.out.println("BLUE SQUARE CLICKED. playerChoice=" + playerChoice);
         }
+        cheapWin();
     }
 
     @Override

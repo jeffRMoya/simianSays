@@ -49,7 +49,7 @@ public class HomeWindow {
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 35));
 
-        label = new JLabel("<html>1. Watch Simian as colors lights up randomly.<br>" +
+        label = new JLabel("<html>1. Watch Simian as colors light up randomly.<br>" +
                 "<html>2. Then Click on the colors in same order to progress to next round.<br>" +
                 "<html>3. With each round, number of flashes increases.<br>" +
                 "<html>4. Total of 10 successful rounds to Win the game.");

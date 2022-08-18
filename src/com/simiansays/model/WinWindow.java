@@ -1,13 +1,9 @@
 package com.simiansays.model;
 
-import com.simiansays.model.app.SimianSaysApp;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class WinWindow {
     //INSTANCE VARIABLE of JFRAME- FIELDS
@@ -69,23 +65,20 @@ public class WinWindow {
         playAgainButton.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 100));
         buttonPanel.add(playAgainButton);
 
-        playAgainButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("PLAY AGAIN BUTTON HAS BEEN CLICKED");
-                /*
-                 * Swing method 'invokeLater' requires as a parameter an instance of runnable. InvokeLater will ensure all swing related
-                 * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
-                 * swing code should run through this thread.
-                 */
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        GameWindow gameWindow = new GameWindow();
-                        gameWindow.show();
-                    }
-                });
-            }
+        playAgainButton.addActionListener(e -> {
+            System.out.println("PLAY AGAIN BUTTON HAS BEEN CLICKED");
+            /*
+             * Swing method 'invokeLater' requires as a parameter an instance of runnable. InvokeLater will ensure all swing related
+             * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
+             * swing code should run through this thread.
+             */
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    GameWindow gameWindow = new GameWindow();
+                    gameWindow.show();
+                }
+            });
         });
     }
 
