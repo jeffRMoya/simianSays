@@ -1,20 +1,11 @@
 package com.simiansays.model;
 
-import com.simiansays.model.app.SimianSaysApp;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class WinWindow {
+class WinWindow {
     //INSTANCE VARIABLE of JFRAME- FIELDS
-    private JFrame window;
-    private JPanel titlePanel, msgPanel, buttonPanel;
-    private JButton playAgainButton;
-    private JLabel label;
+    private final JFrame window;
 
     // JFRAME WINDOW CONSTRUCTOR
     public WinWindow() {
@@ -27,13 +18,13 @@ public class WinWindow {
         window.setLocationRelativeTo(null);
 
         // within window TITLE PANEL Specs
-        titlePanel = new JPanel();
+        JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.BLACK);
         titlePanel.setBounds(0, 0, 1000, 300);
         window.add(titlePanel);
 
         // art
-        label = new JLabel("BLUE FALCON 5: SIMIAN SAYS");
+        JLabel label = new JLabel("BLUE FALCON 5: SIMIAN SAYS");
         titlePanel.add(label);
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 40));
@@ -41,7 +32,7 @@ public class WinWindow {
         label.setIcon(printIcon);
 
         // Won message Panel
-        msgPanel = new JPanel();
+        JPanel msgPanel = new JPanel();
         msgPanel.setBackground(Color.BLACK);
         msgPanel.setBounds(0, 300, 1000, 300);
         window.add(msgPanel);
@@ -56,37 +47,23 @@ public class WinWindow {
         label.setFont(new Font("Arial", Font.BOLD, 90));
 
         //PLAY AGAIN Button Panel
-        buttonPanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.BLACK);
         buttonPanel.setBounds(0, 600, 1000, 400);
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         window.add(buttonPanel);
 
         // PlayAgain BUTTON
-        playAgainButton = new JButton("PLAY AGAIN");
+        JButton playAgainButton = new JButton("PLAY AGAIN");
         playAgainButton.setFont(new Font("Arial", Font.PLAIN, 35));
         playAgainButton.setPreferredSize(new Dimension(300, 100));
         playAgainButton.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 100));
         buttonPanel.add(playAgainButton);
 
-        playAgainButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("PLAY AGAIN BUTTON HAS BEEN CLICKED");
-                /*
-                 * Swing method 'invokeLater' requires as a parameter an instance of runnable. InvokeLater will ensure all swing related
-                 * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
-                 * swing code should run through this thread.
-                 */
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        GameWindow gameWindow = new GameWindow();
-                        gameWindow.show();
-                    }
-                });
-            }
-        });
+        playAgainButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
+            GameWindow gameWindow = new GameWindow();
+            gameWindow.show();
+        }));
     }
 
     // show() METHOD CALLS FOR WINDOW IN main().

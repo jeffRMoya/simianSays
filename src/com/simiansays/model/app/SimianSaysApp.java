@@ -15,11 +15,7 @@ public class SimianSaysApp {
         String initials = promptForInitials();
         updateBoard(initials);
         showBoard();
-        /*
-         * Swing method 'invokeLater' requires as a parameter an instance of runnable. InvokeLater will ensure all swing related
-         * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
-         * swing code should run through this thread.
-         */
+
         SwingUtilities.invokeLater(() -> {
             HomeWindow homeWindow = new HomeWindow();
             homeWindow.show();
