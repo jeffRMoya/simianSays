@@ -21,7 +21,6 @@ class Player implements Serializable {
     }
 
     // Accessor Methods
-
     public int getWins() {
         return wins;
     }

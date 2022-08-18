@@ -2,15 +2,10 @@ package com.simiansays.model;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class LoseWindow {
+class LoseWindow {
     // INSTANCE VARIABLE OF JFRAME
-    private JFrame window;
-    private JPanel titlePanel, msgPanel, buttonPanel, scorePanel;
-    private JButton replayButton;
-    private JLabel label;
+    private final JFrame window;
 
     // JFRAME WINDOW CONSTRUCTOR
     public LoseWindow() {
@@ -23,13 +18,13 @@ public class LoseWindow {
         window.setLocationRelativeTo(null);
 
         // within window PANEL SPECS
-        titlePanel = new JPanel();
+        JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.RED);
         titlePanel.setBounds(0,0,1000,250);
         window.add(titlePanel);
 
         // art
-        label = new JLabel("BLUE FALCON 5: SIMIAN SAYS");
+        JLabel label = new JLabel("BLUE FALCON 5: SIMIAN SAYS");
         titlePanel.add(label);
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 40));
@@ -37,7 +32,7 @@ public class LoseWindow {
         label.setIcon(printIcon);
 
         //GameOver Message Panel
-        msgPanel = new JPanel();
+        JPanel msgPanel = new JPanel();
         msgPanel.setBackground(Color.RED);
         msgPanel.setBounds(0,250,1000,250);
         window.add(msgPanel);
@@ -52,42 +47,27 @@ public class LoseWindow {
         label.setFont(new Font("Arial", Font.BOLD, 90));
 
         // REPLAY button panel
-        buttonPanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.RED);
         buttonPanel.setBounds(0,500,1000,125);
         window.add(buttonPanel);
 
         //REPLY button
-        replayButton = new JButton("REPLAY");
+        JButton replayButton = new JButton("REPLAY");
         replayButton.setFont(new Font("Arial", Font.PLAIN, 35));
         replayButton.setPreferredSize(new Dimension(300,100));
-
         buttonPanel.add(replayButton);
 
         // SCORE Panel
-        scorePanel = new JPanel();
+        JPanel scorePanel = new JPanel();
         scorePanel.setBackground(Color.RED);
         scorePanel.setBounds(0, 625, 1000, 375);
         window.add(scorePanel);
 
-        replayButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("PLAY BUTTON HAS BEEN CLICKED");
-                /*
-                 * Swing method 'invokeLater' requires as a parameter an instance of runnable. InvokeLater will ensure all swing related
-                 * code will run on the same thread. This thread is called, "Event Dispatch Thread (EDT)". Swing is not thread safe, so all
-                 * swing code should run through this thread.
-                 */
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        GameWindow gameWindow = new GameWindow();
-                        gameWindow.show();
-                    }
-                });
-            }
-        });
+        replayButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
+            GameWindow gameWindow = new GameWindow();
+            gameWindow.show();
+        }));
     }
 
     // show() METHOD CALLS FOR WINDOW IN main().

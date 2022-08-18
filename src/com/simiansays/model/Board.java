@@ -47,11 +47,10 @@ public class Board implements Serializable {
                 System.out.println(player);
             }
         }
-
     }
 
     public void update(String initials) {
-        Player player = null;
+        Player player;
         if(winsMap.containsKey(initials)) {
             player = winsMap.get(initials);
         }
@@ -59,7 +58,7 @@ public class Board implements Serializable {
             player = new Player(initials, this);
             winsMap.put(initials, player);
         }
-
+        System.out.println(player);
         saveBoard();
     }
 
