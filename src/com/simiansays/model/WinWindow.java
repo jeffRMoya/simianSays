@@ -11,7 +11,7 @@ class WinWindow {
     public WinWindow() {
         // window specs
         window = new JFrame("Simian Says");
-        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(null);
         window.setResizable(false);
         window.setSize(1000, 1000);
